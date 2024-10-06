@@ -1,0 +1,197 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1f2937;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  color: #1f2937; /* Tailwind의 text-gray-600에 해당 */
+}
+
+
+.App {
+  height: 100vh;
+  width: 100%;
+}
+
+
+.Sign_up,
+.Sign_in,
+.map,
+.planner,
+.project {
+  font-weight: 600;
+}
+
+
+.Page_container {
+  padding: 0.5 rem; /* p-2 */
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+
+.Page_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem; /* px-2 py-2 */
+  border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+}
+
+
+.Logo {
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 0.5rem; /* p-2 */
+  margin: 0.25rem; /* m-1 */
+  margin-top: 0.75rem; /* mt-3 */
+}
+
+
+.Logo_image {
+  display: flex;
+  gap: 0.25rem; /* gap-1 */
+  padding: 0.25rem; /* p-1 */
+  align-items: center;
+}
+
+
+.Logo_image_svg {
+  width: 2rem; /* w-5 */
+  height: 2rem; /* h-7 */
+}
+
+
+.Logo_text {
+  font-size: 1.6rem; /* text-l */
+  font-weight: 600; /* font-semibold */
+}
+
+
+.Sign_box_container {
+  display: flex;
+  gap: 0.75rem; /* gap-3 */
+  padding: 0.5rem; /* p-2 */
+  margin-top: 0.75rem; /* mt-3 */
+}
+
+
+.Sign_box_wrapper {
+  display: flex;
+  gap: 0.75rem; /* gap-3 */
+  margin-right: 2.5rem; /* mr-10 */
+}
+
+
+.Sign_up,
+.Sign_in {
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.5rem; /* p-2 */
+  text-align: center;
+  cursor: pointer;
+}
+
+.Sign_up:hover,
+.Sign_in:hover {
+  background-color: black;
+  color: #e5e7eb; /* hover:text-gray-200 */
+}
+
+.shadow-custom {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  position: relative;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* CreatePlanner style */
+.input-control {
+  width: 99%;
+  background-color: aliceblue;
+  /* margin: 60px 0; */
+  font-weight: 500;
+  font-size: 30px;
+  text-align: start;
+  border-radius: 0.375rem; /* rounded-md */
+}
+.input {
+  border-radius: 100px;
+}
+
+/* calendar custom text */
+.custom-calendar .rdrCalendarWrapper {
+  font-size: 1.2rem; /* Adjust the base font size */
+  color: #1f2937; /* from-gray-700 */
+  width:100%;
+}
+
+.custom-calendar .rdrMonthAndYearPickers select,
+.custom-calendar .rdrMonthPicker select,
+.custom-calendar .rdrYearPicker select {
+  font-size: 1.2rem; /* Adjust dropdown font size */
+}
+
+.custom-calendar .rdrDayNumber span {
+  font-size: 1.2rem; /* Adjust day number font size */
+}
+
+.custom-calendar .rdrDayToday span {
+  font-size: 1.25rem; /* Adjust day number font size */
+
+}
+
+.custom-calendar .rdrDateDisplay{
+  display: none;
+}
+
+.custom-calendar .rdrWeekDay {
+  font-size: 1.2rem; /* Adjust weekday name font size */
+  text-align: center;
+}
+
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.input-placeholder::placeholder {
+  font-weight: bold; /* Make placeholder text bold */
+  color: #868e96;
+}
+
+.textarea::placeholder{
+  text-align: center;
+}
+
+.Corporation {
+  margin-right: 20px;
+}
+
+.Photo_wrapper_1 {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
