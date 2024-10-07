@@ -19,19 +19,18 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t guswlda/task-front-cicd .
+        run: docker build -t guswlda/planner_front .
       - name: Push Docker Image
-        run: docker push guswlda/task-front-cicd:latest
+        run: docker push guswlda/planner_front:latest
 
   deploy:
     needs: build
-    runs-on: aws-ec2
+    runs-on: linuxuser
 
     steps:
       - name: Pull image from docker hub
-        run: docker pull guswlda/task-front-cicd:latest
+        run: docker pull guswlda/planner_front:latest
       - name: Delete existing container
         run: docker rm -f reactContainer
       - name: Run container
-        run: docker run -d -p 80:80 --name reactContainer guswlda/task-front-cicd
-        # task-front-cicd 확인
+        run: docker run -d -p 80:80 --name reactContainer guswlda/planner_front
