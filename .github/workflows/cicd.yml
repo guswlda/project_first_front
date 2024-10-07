@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,26 +14,24 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo "REACT_APP_MAP_API_KEY=${{ secrets.REACT_APP_MAP_API_KEY }}" > .env
+          echo "${{ secrets.REACT_APP_AUTH_CLIENT_ID }}" > .env
 
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Build Docker Image
-        run: docker build -t guswlda/planner_front .
-
+        run: docker build -t guswlda/task-front-cicd .
       - name: Push Docker Image
-        run: docker push guswlda/planner_front:latest
+        run: docker push guswlda/task-front-cicd:latest
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: aws-ec2
+
     steps:
       - name: Pull image from docker hub
-        run: docker pull guswlda/planner_front:latest
-
+        run: docker pull guswlda/task-front-cicd:latest
       - name: Delete existing container
         run: docker rm -f reactContainer
-
       - name: Run container
-        run: docker run -d -p 3001:80 --name reactContainer guswlda/planner_front
+        run: docker run -d -p 80:80 --name reactContainer guswlda/task-front-cicd
+        # task-front-cicd 확인
