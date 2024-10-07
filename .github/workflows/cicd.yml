@@ -33,4 +33,4 @@ jobs:
       - name: Delete existing container
         run: docker rm -f reactContainer
       - name: Run container
-        run: docker run -d -p 3001:80 --name reactContainer guswlda/planner_front
+        run: docker run -d -p 3002:80 --name reactContainer guswlda/planner_front
