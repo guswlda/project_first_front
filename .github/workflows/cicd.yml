@@ -19,7 +19,7 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t gguswlda/planner_front .
+        run: docker build -t guswlda/planner_front .
       - name: Push Docker Image
         run: docker push guswlda/planner_front:latest
 
