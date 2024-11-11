@@ -1,30 +1,35 @@
-# 1단계: Node.js 빌드 스테이지
-FROM node:20 AS build
+# 오피셜 노드 이미지
+FROM node:alpine3.18 as build
 
 # 작업 디렉토리 설정
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# package.json과 package-lock.json 복사
-COPY package*.json ./
+# 패키지 파일 현재 디렉토리에 복사
+COPY package.json .
 
-# 종속성 설치
+# 패키지 설치
 RUN npm install
 
-# 소스 코드 복사 및 React 애플리케이션 빌드
+# 나머지 소스코드 복사
 COPY . .
-RUN npm run build  # 정적 파일 생성
 
-# 2단계: Nginx 설정 및 빌드된 파일 제공
-FROM nginx:1.27.2
+# 빌드
+RUN npm run build
 
-# Nginx 설정 파일 복사
-COPY nginx.conf /etc/nginx/nginx.conf
+# nginx 이미지
+FROM nginx:1.23-alpine
 
-# 빌드된 정적 파일을 Nginx의 기본 경로로 복사
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
+# nginx 디폴트 접근 파일 설정
+WORKDIR /usr/share/nginx/html
 
-# Nginx 포트 설정
+# 기존 도커 컨테이너 삭제
+RUN rm -rf *
+
+# nginx 디렉토리에 리엑트 빌드 파일 복사
+COPY --from=build /app/build .
+
+# nginx 포트 설정
 EXPOSE 80
 
-# Nginx 시작
-CMD ["nginx", "-g", "daemon off;"]
+# nginx 실행 할 때 데몬 실행 기능 끔
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
